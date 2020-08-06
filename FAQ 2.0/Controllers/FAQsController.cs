@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.Expressions;
 using FAQ_2._0.DAL;
 using FAQ_2._0.Models;
@@ -23,33 +25,25 @@ namespace FAQ_2._0.Controllers
             return View(db.FAQs.ToList());
         }
 
+
+
+
+        public ActionResult Save(int? id)
+        {
+            FAQ faq = new FAQ();
+
+            if (id > 0)
+            {
+                faq = db.FAQs.Find(id);
+            }
+
+            return View(faq);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save([Bind(Include = "FAQID,Pergunta,Resposta,Premium,Pos")] FAQ fAQ)
-        {
-            if (ModelState.IsValid)
-            {
-                fAQ.UpdateTime = DateTime.Now;
-
-
-                if (fAQ.Pergunta == null || fAQ.Resposta == null)
-                {
-                    return RedirectToAction("Index");
-                }
-                     
-                else
-                {
-                    db.FAQs.Add(fAQ);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult Edit([Bind(Include = "FAQID,Pergunta,Resposta,Premium,Pos")] FAQ fAQ)
         {
             if (ModelState.IsValid)
             {
@@ -59,21 +53,25 @@ namespace FAQ_2._0.Controllers
 
                 if (busca != null)
                 {
+                    db.FAQs.AddOrUpdate(fAQ);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
                     if (fAQ.Pergunta == null || fAQ.Resposta == null)
                     {
                         return RedirectToAction("Index");
                     }
+
                     else
                     {
-                        db.Entry(fAQ).State = EntityState.Modified;
+                        db.FAQs.Add(fAQ);
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-
                 }
-
             }
-
 
             return RedirectToAction("Index");
         }
@@ -82,7 +80,7 @@ namespace FAQ_2._0.Controllers
         public ActionResult UP(int id)
         {
             FAQ fAQ = db.FAQs.Find(id);
-            fAQ.Pos++;
+            fAQ.Pos--;
             db.Entry(fAQ).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -92,7 +90,7 @@ namespace FAQ_2._0.Controllers
         public ActionResult DOWN(int id)
         {
             FAQ fAQ = db.FAQs.Find(id);
-            fAQ.Pos --;
+            fAQ.Pos ++;
             db.Entry(fAQ).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
