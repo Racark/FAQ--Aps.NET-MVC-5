@@ -24,43 +24,43 @@
                 @Html.ValidationMessageFor(model => model.Pergunta, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Resposta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Resposta, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Resposta, "", new { @class = "text-danger" })
+        <p>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Resposta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Resposta, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Resposta, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </p>
 
+        <p>
         <div class="form-group">
             @Html.LabelFor(model => model.Premium, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Premium)
-                    @Html.ValidationMessageFor(model => model.Premium, "", new { @class = "text-danger" })
-                </div>
+                @Html.CheckBoxFor(model => model.Premium)
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Language, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        </p>
+        <p>
+            <div class="form-group">
+                <div class="col-md-10">
                     <select name="Language">
                         <option value="pt" @(Model.Language == "pt" ? "selected" : "")>Português</option>
                         <option value="es" @(Model.Language == "es" ? "selected" : "")>Español</option>
                         <option value="en" @(Model.Language == "en" ? "selected" : "")>English</option>
                         <option value="it" @(Model.Language == "it" ? "selected" : "")>Italiano</option>
                     </select>
-                    @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        </p>
+        <p>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
-        </div>
+        </p>
     </div>
 }
 
