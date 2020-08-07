@@ -140,6 +140,10 @@
     <Compile Include="Migrations\202008041843197_Ver1.01.designer.cs">
       <DependentUpon>202008041843197_Ver1.01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008071414347_languege.cs" />
+    <Compile Include="Migrations\202008071414347_languege.designer.cs">
+      <DependentUpon>202008071414347_languege.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008041843197_Ver1.01.resx">
       <DependentUpon>202008041843197_Ver1.01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071414347_languege.resx">
+      <DependentUpon>202008071414347_languege.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

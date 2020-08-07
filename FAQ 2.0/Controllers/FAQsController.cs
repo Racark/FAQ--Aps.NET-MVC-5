@@ -20,15 +20,15 @@ namespace FAQ_2._0.Controllers
         private Contexto db = new Contexto();
 
         // GET: FAQs
-        public ActionResult Index()
+        public ActionResult Index(string lan = "pt")
         {
-            return View(db.FAQs.ToList());
+            return View(db.FAQs.Where(f => f.Language == lan).ToList());
         }
 
 
 
 
-        public ActionResult Save(int? id)
+        public ActionResult Save(int id = 0)
         {
             FAQ faq = new FAQ();
 
@@ -43,7 +43,7 @@ namespace FAQ_2._0.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save([Bind(Include = "FAQID,Pergunta,Resposta,Premium,Pos")] FAQ fAQ)
+        public ActionResult Save([Bind(Include = "FAQID,Pergunta,Resposta,Premium,Pos,Language")] FAQ fAQ)
         {
             if (ModelState.IsValid)
             {
@@ -54,8 +54,6 @@ namespace FAQ_2._0.Controllers
                 if (busca != null)
                 {
                     db.FAQs.AddOrUpdate(fAQ);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -67,12 +65,11 @@ namespace FAQ_2._0.Controllers
                     else
                     {
                         db.FAQs.Add(fAQ);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
                     }
                 }
             }
 
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

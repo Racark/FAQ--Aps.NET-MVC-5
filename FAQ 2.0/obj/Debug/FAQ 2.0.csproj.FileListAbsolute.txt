@@ -83,3 +83,4 @@ C:\Users\Dennys\source\repos\FAQ 2.0\FAQ 2.0\obj\Debug\FAQ 2.0.pdb
 C:\Users\Dennys\source\repos\FAQ 2.0\FAQ 2.0\obj\Debug\FAQ_2._0.Migrations.Initial.resources
 C:\Users\Dennys\source\repos\FAQ 2.0\FAQ 2.0\obj\Debug\FAQ 2.0.csproj.GenerateResource.cache
 C:\Users\Dennys\source\repos\FAQ 2.0\FAQ 2.0\obj\Debug\FAQ_2._0.Migrations.Ver101.resources
+C:\Users\Dennys\source\repos\FAQ 2.0\FAQ 2.0\obj\Debug\FAQ_2._0.Migrations.languege.resources

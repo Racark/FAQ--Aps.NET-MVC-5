@@ -7,39 +7,54 @@
 
 <h2>Perguntas Frequentes</h2>
 
-<h3>
-    <a class="btn btn-warning" href="@Url.Action("Save", "FAQs", new { id = 0})">Adicionar Pergunta</a>
-</h3>
+<select id="language" onchange="doNavigate()">
+    <option value="">Languages</option>
+    <option value="@Url.Action("Index", "FAQs", new { lan = "pt" })">Português</option>
+    <option value="@Url.Action("Index", "FAQs", new { lan = "es" })">Español</option>
+    <option value="@Url.Action("Index", "FAQs", new { lan = "en" })">English</option>
+    <option value="@Url.Action("Index", "FAQs", new { lan = "it" })">Italiano</option>
+</select>
 
 
+    <script>
+        function doNavigate() {
+            window.location.href = document.getElementById("language").value;
+        }
+    </script>
 
-@foreach (var item in Model.OrderBy(pos => pos.Pos))
-{
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default round">
 
-            <div class="panel-heading" role="tab">
-                <h4 class="panel-title link " role="button" data-parent="#accordion" aria-expanded="false">
-                    @Html.DisplayFor(modelItem => item.Pergunta, new { htmlAttributes = new { @class = "form-control" } })
-                </h4>
+    <h3>
+        <a class="btn btn-warning" href="@Url.Action("Save", "FAQs")">Adicionar Pergunta</a>
+    </h3>
 
-                <a class="btn btn-info"href="@Url.Action("Save", "FAQs", new {id = item.FAQID})">Editar</a>  
-                <a class="btn btn-success"href='@Url.Action("UP", "FAQs", new { id = item.FAQID })'> UP </a>
-                <a class="btn btn-primary"href="@Url.Action("DOWN", "FAQs", new { id = item.FAQID })"> DOWN </a>
-                <a class="btn btn-danger" href="@Url.Action("Delete", "FAQs", new { id = item.FAQID})"> Delete</a>
-                
-            </div>
 
-            <div class="panel-collapse" role="tabpanel" aria-expanded="false">
-                <div class="panel-body">
-                    @Html.DisplayFor(modelItem => item.Resposta, new { htmlAttributes = new { @class = "form-control" } })
+    @foreach (var item in Model.OrderBy(pos => pos.Pos))
+    {
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default round">
+
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title link " role="button" data-parent="#accordion" aria-expanded="false">
+                        @Html.DisplayFor(modelItem => item.Pergunta, new { htmlAttributes = new { @class = "form-control" } })
+                    </h4>
+
+                    <a class="btn btn-info" href="@Url.Action("Save", "FAQs", new { id = item.FAQID })">Editar</a>
+                    <a class="btn btn-success" href='@Url.Action("UP", "FAQs", new { id = item.FAQID })'> UP </a>
+                    <a class="btn btn-primary" href="@Url.Action("DOWN", "FAQs", new { id = item.FAQID })"> DOWN </a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", "FAQs", new { id = item.FAQID })"> Delete</a>
+
                 </div>
+
+                <div class="panel-collapse" role="tabpanel" aria-expanded="false">
+                    <div class="panel-body">
+                        @Html.DisplayFor(modelItem => item.Resposta, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
             </div>
-
         </div>
-    </div>
 
-}
+    }
 
 
 
