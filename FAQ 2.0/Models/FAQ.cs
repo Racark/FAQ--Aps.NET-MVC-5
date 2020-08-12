@@ -17,7 +17,6 @@ namespace FAQ_2._0.Models
 
         public string Language { get; set; }
 
-
         public bool Premium { get; set; }
 
         public int Pos { get; set; }
